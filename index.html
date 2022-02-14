@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Add a WMS source</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoicGhpbHdlbHNoIiwiYSI6ImNpaGRyc3R0ODBjN2h2NWtsNW90cWNzdmIifQ.cDndv6Q-P1ZBWaOnVbLeRg';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/light-v10',
+        zoom: 8,
+        center: [-74.5447, 40.6892]
+    });
+
+    map.on('load', () => {
+        map.addSource('Geologic_units_of_Virginia', {
+            'type': 'raster',
+            // use the tiles option to specify a WMS tile source URL
+            // https://docs.mapbox.com/mapbox-gl-js/style-spec/sources/
+            'tiles': [
+                'https://studio.mapbox.com/tilesets/philwelsh.9ka1qo10'
+            ],
+            'tileSize': 256
+        });
+        map.addLayer(
+            {
+                'id': 'philwelsh.9ka1qo10',
+                'type': 'raster',
+                'source': 'Geologic_units_of_Virginia',
+                'paint': {}
+            },
+            'aeroway-line'
+        );
+    });
+</script>
+
+</body>
+</html>
