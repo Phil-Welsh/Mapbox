@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Add a vector tile source</title>
+<title>Display a map with a custom style</title>
 <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
@@ -16,34 +16,10 @@ body { margin: 0; padding: 0; }
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1IjoicGhpbHdlbHNoIiwiYSI6ImNpaGRyc3R0ODBjN2h2NWtsNW90cWNzdmIifQ.cDndv6Q-P1ZBWaOnVbLeRg';
     const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/light-v10',
-        zoom: 13,
-        center: [-122.447303, 37.753574]
-    });
-
-    map.on('load', () => {
-        map.addSource('mapbox-terrain', {
-            type: 'vector',
-            // Use any Mapbox-hosted tileset using its tileset id.
-            // Learn more about where to find a tileset id:
-            // https://docs.mapbox.com/help/glossary/tileset-id/
-            url: 'mapbox://philwelsh.9ka1qo10'
-        });
-        map.addLayer({
-            'id': 'philwelsh.9ka1qo10',
-            'type': 'polygon',
-            'source': 'Geologic_units_of_Virginia-bxr67g',
-            'source-layer': 'Geologic_units_of_Virginia',
-            'layout': {
-                'line-join': 'round',
-                'line-cap': 'round'
-            },
-            'paint': {
-                'line-color': '#ff69b4',
-                'line-width': 1
-            }
-        });
+        container: 'map', // container ID
+        style: 'mapbox://styles/philwelsh/ckziudd22002t15roi0i54mku', // custom style url from https://studio.mapbox.com/
+        center: [41, 21], // starting position
+        zoom: 3 // starting zoom
     });
 </script>
 
